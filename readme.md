@@ -1,7 +1,6 @@
-#Scrub Old Posts
+# Scrub Old Posts
 
 Remove content older than a given date.
-
 
 ## Synopsis
 
