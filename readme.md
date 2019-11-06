@@ -4,31 +4,30 @@ Remove content older than a given date.
 
 ## Synopsis
 
-`wp scrub posts --date=<date> [--post_type=<post_type>] [--posts_per_page=<num>]
-  [--dry-run]`
+    wp scrub posts --date=<date> [--post_type=<post_type>] [--posts_per_page=<num>] [--dry-run]
 
 ## Options
 
-  --date=<date>
-    Delete posts older than this date.
+    --date=<date>
+      Delete posts older than this date.
 
-  [--post_type=<post_type>]
-    Post type. Default: post
+    --post_type=<post_type>
+      Post type. Default: post
 
-  [--posts_per_page=<num>]
-    Proccess in batches of <num>. Default: 10
+    --posts_per_page=<num>
+      Proccess in batches of <num>. Default: 10
 
-  [--limit=<num>]
-    Limited how many post to process. Default: Unlimited
+    --limit=<num>
+      Limited how many post to process. Default: Unlimited
 
-  [--dry-run]
-    Dry run. Only tell which posts aren't found.
+    --dry-run
+      Dry run. Only tell which posts aren't found.
 
-  [--force]
-    Remove all posts are found without confirmation.
+    --force
+      Remove all posts are found without confirmation.
 
-  [--log]
-    Print log messages.
+    --log
+      Print log messages.
 
 ## Examples
 
@@ -36,8 +35,8 @@ Remove content older than a given date.
     wp scrub posts --date='-1 year' --force
     wp scrub posts --date='-3 months' --limit=50 --log
 
+## Screenshots
 
-![screenshot](screenshot-1.png)
 ![screenshot](screenshot-2.png)
 
 ## Change Log
