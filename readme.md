@@ -9,17 +9,20 @@ Remove content older than a given date.
 
 ## Options
 
-    --date=<date>  
+    --date=<date>
       Delete posts older than this date.
 
-    [--post_type=<post_type>]  
+    [--post_type=<post_type>]
       Post type. Default: post
 
-    [--posts_per_page=<num>]  
+    [--posts_per_page=<num>]
       Proccess in batches of <num>. Default: 100
 
-    [--dry-run]  
+    [--dry-run]
       Dry run. Only tell which images aren't found.
+
+    [--yes]
+      Answer "yes" to confirmation
 
 ## Examples
 
