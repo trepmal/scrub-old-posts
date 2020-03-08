@@ -13,13 +13,19 @@ class Scrub_Posts extends WP_CLI_Command {
 	 * : Delete posts older than this date.
 	 *
 	 * [--post_type=<post_type>]
-	 * : Post type. Default: post
+	 * : Post type.
+	 * ---
+	 * default: post
+	 * ---
 	 *
 	 * [--posts_per_page=<num>]
-	 * : Process in batches of <num>. Default: 100
+	 * : Process in batches of <num>.
+	 * ---
+	 * default: 100
+	 * ---
 	 *
 	 * [--dry-run]
-	 * : Dry run. Only tell which images aren't found.
+	 * : Dry run.
 	 *
 	 * [--yes]
 	 * : Answer yes to the confirmation message.
@@ -31,20 +37,19 @@ class Scrub_Posts extends WP_CLI_Command {
 	 */
 	function posts( $args, $assoc_args ) {
 
-		$dry_run = isset( $assoc_args['dry-run'] );
-		unset( $assoc_args['dry-run'] );
-
-		$date = date( 'Y-m-d', strtotime( $assoc_args['date'] ) );
-
-		$defaults = array(
-			'posts_per_page' => 100,
-			'post_type'      => 'post',
-		);
-		$assoc_args = wp_parse_args( $assoc_args, $defaults );
-
+		$dry_run   = isset( $assoc_args['dry-run'] );
+		$date      = strtotime( $assoc_args['date'] );
 		$post_type = $assoc_args['post_type'];
-		$ppp       = min( 300, max( 1, intval( $assoc_args['posts_per_page'] ) ) );
+		$ppp       = min( 500, max( 1, intval( $assoc_args['posts_per_page'] ) ) );
 
+		if ( ! get_post_type_object( $post_type ) ) {
+			WP_CLI::error( 'Invalid post type.' );
+		}
+		if ( ! $date ) {
+			WP_CLI::error( 'Invalid date.' );
+		}
+
+		// Only dealing with 'publish' right now
 		$gtotal = wp_count_posts( $post_type )->publish;
 		$args = array(
 			'fields'                 => 'ids',
@@ -54,7 +59,7 @@ class Scrub_Posts extends WP_CLI_Command {
 			'post_type'              => $post_type,
 			'date_query'             => array(
 				array(
-					'before' => $date,
+					'before' => date( 'Y-m-d', $date ),
 				),
 			),
 		);
@@ -70,10 +75,10 @@ class Scrub_Posts extends WP_CLI_Command {
 				$dry_run ? '[Dry run] ' : '',
 				$total,
 				$gtotal,
-				$date
+				date( 'Y-m-d', $date )
 			) );
 		} else {
-			WP_CLI::line( 'No posts found' );
+			WP_CLI::line( 'No posts found.' );
 			return;
 		}
 
@@ -99,11 +104,11 @@ class Scrub_Posts extends WP_CLI_Command {
 
 					if ( is_wp_error( $result ) ) {
 						$m = $result->get_error_message();
-						WP_CLI::debug( WP_CLI::colorize( "%rError: [post id: $post_id] $m%n" ) );
+						WP_CLI::debug( WP_CLI::colorize( sprintf( '%rError: [post id: %d] %d%n', $post_id, $m ) ) );
 					} elseif ( ! $result ) {
-						WP_CLI::debug( WP_CLI::colorize( "%rError: [post id: $post_id] unknown%n" ) );
+						WP_CLI::debug( WP_CLI::colorize( sprintf( '%rError: [post id: %d] unknown%n', $post_id ) ) );
 					} else {
-						WP_CLI::debug( "[$post_id] deleted");
+						WP_CLI::debug( sprintf( '[%d] deleted', $post_id ) );
 					}
 				}
  				$notify->tick();
