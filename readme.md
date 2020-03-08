@@ -10,8 +10,7 @@ Recommended:
 
 ## Synopsis
 
-`wp scrub posts --date=<date> [--post_type=<post_type>] [--posts_per_page=<num>]
-  [--dry-run]`
+`wp scrub posts --date=<date> [--post_type=<post_type>] [--posts_per_page=<num>] [--dry-run]`
 
 ## Options
 
@@ -34,6 +33,3 @@ Recommended:
 
     wp scrub posts --date='-1 month'
     wp scrub posts --date='2015-01-01'
-
-
-![screenshot](screenshot-1.png)
