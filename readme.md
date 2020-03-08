@@ -1,4 +1,4 @@
-# Scrub Old Posts
+# Scrub Old Posts [![Build Status](https://travis-ci.org/trepmal/scrub-old-posts.svg?branch=master)](https://travis-ci.org/trepmal/scrub-old-posts)
 
 Remove content older than a given date.
 
