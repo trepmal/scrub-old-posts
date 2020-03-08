@@ -65,13 +65,23 @@ class Scrub_Posts extends WP_CLI_Command {
 		$args['no_found_rows'] = true;
 
 		if ( $total > 0 ) {
-			WP_CLI::confirm( sprintf( "Found %d posts (of %d) older than %s. Proceed?", $total, $gtotal, $date ) );
+			WP_CLI::confirm( sprintf(
+				"%sFound %d posts (of %d) older than %s. Proceed?",
+				$dry_run ? '[Dry run] ' : '',
+				$total,
+				$gtotal,
+				$date
+			) );
 		} else {
 			WP_CLI::line( 'No posts found' );
 			return;
 		}
 
-		$notify = \WP_CLI\Utils\make_progress_bar( sprintf( 'Removing %d post(s)', $total ), $total );
+		$notify = \WP_CLI\Utils\make_progress_bar( sprintf(
+			'%s %d post(s)',
+			$dry_run ? 'Would remove' : 'Removing',
+			$total
+		), $total );
 
 		for( $i=1; $i<=$pages; $i++ ) {
 
