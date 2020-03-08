@@ -2,6 +2,12 @@
 
 Remove content older than a given date.
 
+## Installation
+
+Recommended:
+
+`wp package install trepmal/scrub-old-posts`
+
 ## Synopsis
 
 `wp scrub posts --date=<date> [--post_type=<post_type>] [--posts_per_page=<num>]
