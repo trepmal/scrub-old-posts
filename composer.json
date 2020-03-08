@@ -11,6 +11,16 @@
 		}
 	],
 	"minimum-stability": "dev",
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.x-dev"
+		},
+		"bundled": true,
+		"commands": [
+			"scrub",
+			"scrub posts"
+		]
+	},
 	"autoload": {
 		"files": [ "scrub-old-posts.php" ]
 	},
