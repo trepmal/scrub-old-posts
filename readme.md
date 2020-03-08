@@ -21,7 +21,7 @@ Recommended:
       Post type. Default: post
 
     [--posts_per_page=<num>]
-      Proccess in batches of <num>. Default: 100
+      Process in batches of <num>. Default: 100
 
     [--dry-run]
       Dry run.
