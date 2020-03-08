@@ -25,10 +25,10 @@ Recommended:
       Proccess in batches of <num>. Default: 100
 
     [--dry-run]
-      Dry run. Only tell which posts aren't found.
+      Dry run.
 
     [--yes]
-      Answer "yes" to confirmation
+      Answer "yes" to confirmation.
 
 ## Examples
 
